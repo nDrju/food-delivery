@@ -151,8 +151,7 @@ cardsMenu.insertAdjacentElement('beforeend',card);
 
 function openGoods(event) {
 const target = event.target;
-
-const restaurant = target.closest('.card-restaurant');
+if (login) {const restaurant = target.closest('.card-restaurant');
 if (restaurant) {
   containerPromo.classList.add('hide');
   restaurants.classList.add('hide');
@@ -164,6 +163,10 @@ cardsMenu.textContent = '';
   createCardGood();
   createCardGood();
 }
+} else {
+  toggleModalAuth ();
+}
+
 }
 
 
