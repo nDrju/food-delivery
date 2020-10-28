@@ -22,6 +22,11 @@ const cardsMenu = document.querySelector('.cards-menu');
 
 let login = localStorage.getItem('gloDelivery');
 
+function validName (str) {
+  const regName = /^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/;
+  return regName.test(str);
+}
+
 function toggleModal() {
   modal.classList.toggle("is-open");
 }
@@ -61,7 +66,7 @@ function notAuthorized() {
   
   function logIn(event) {
     event.preventDefault();
-    if (loginInput.value.trim()) {
+    if (validName(loginInput.value)) {
       login = loginInput.value;
       localStorage.setItem('gloDelivery', login);
       toggleModalAuth();
@@ -164,17 +169,13 @@ cardsMenu.textContent = '';
   createCardGood();
 }
 } else {
-  toggleModalAuth ();
+  toggleModalAuth();
 }
 
 }
 
 
-// Run
-checkAuth();
-createCardRestaurant();
-createCardRestaurant();
-createCardRestaurant();
+
 
 
 cardsRestaurants.addEventListener('click', openGoods);
@@ -185,3 +186,24 @@ logo.addEventListener('click', function() {
   restaurants.classList.remove('hide');
   menu.classList.add('hide');
 })
+
+
+// Run
+checkAuth();
+createCardRestaurant();
+createCardRestaurant();
+createCardRestaurant();
+
+
+// Slider
+new Swiper('.swiper-container', {
+  sliderPerView: 1,
+  loop: true,
+  autoplay: true,
+  grabCursor: true,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+
+});
